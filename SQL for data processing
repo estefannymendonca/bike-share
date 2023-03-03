@@ -193,3 +193,17 @@ GROUP BY
 	FORMAT(started_at, 'yyyy-MM')
 ORDER BY 
 	FORMAT(started_at, 'yyyy-MM')
+	
+	
+	/*Total rides per month*/ 
+
+
+SELECT 
+	FORMAT(started_at, 'yyyy-MM') AS month,
+	COUNT(started_at) AS rides_per_month
+FROM
+	[dbo].[2021-tripdata]
+GROUP BY 
+	FORMAT(started_at, 'yyyy-MM')
+ORDER BY
+	rides_per_month ASC
