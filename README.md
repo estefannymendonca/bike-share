@@ -1,3 +1,5 @@
+### The Scenario
+---
 
 This is the **Cyclistic bike-share analysis case study!** In this case study, I will perform many real-world tasks of a junior data analyst. I will work for a fictional company, Cyclistic, in order to answer the key business questions, I will follow the steps of the data analysis process: **ask, prepare, process, analyze, share, and act.** This project is part of the curriculum of the Google Data Analytics Professional Certificate. 
 
