@@ -1,198 +1,195 @@
-/*creating the table to merge all the data*/
-select
-		ride_id,
-		rideable_type,
-		started_at,
-		ended_at,
-		member_casual
-into
-		[bike_share].[dbo].[2021-tripdata]
-from
-		[bike_share].[dbo].[jan-tripdata]
+/* Adding the data from other months into the dataset*/
 
 
-/*Applying Inner Join on the tables*/
-select
-	[feb-tripdata].rideable_type,
-	[feb-tripdata].started_at,
-	[feb-tripdata].ended_at,
-	[feb-tripdata].member_casual
-from
-	[feb-tripdata]
-left join [dbo].[2021-tripdata] on [feb-tripdata].ride_id = [2021-tripdata].ride_id
-
-
-/*checking the results*/
-select top (50) *
-from [dbo].[2021-tripdata]
-
-
-/*Applying the inner join on the tables*/
-select
-	[mar-tripdata].ride_id,
-	[mar-tripdata].rideable_type,
-	[mar-tripdata].started_at,
-	[mar-tripdata].ended_at,
-	[mar-tripdata].member_casual
-from
-	[mar-tripdata]
-left join [dbo].[2021-tripdata] on [mar-tripdata].ride_id = [2021-tripdata].ride_id
-
-
-/* checking the data added to the 2021-tripdata table*/
-select count(*) from [dbo].[2021-tripdata];
-
-
-/*Adding the month of april*/
-select
+INSERT INTO [dbo].[2021-tripdata]
+           ([ride_id]
+           ,[rideable_type]
+           ,[started_at]
+           ,[ended_at]
+           ,[member_casual])
+SELECT
+    [feb-tripdata].ride_id,
+    [feb-tripdata].rideable_type,
+    [feb-tripdata].started_at,
+    [feb-tripdata].ended_at,
+    [feb-tripdata].member_casual
+FROM [feb-tripdata]
+UNION ALL
+SELECT
+    [mar-tripdata].ride_id,
+    [mar-tripdata].rideable_type,
+    [mar-tripdata].started_at,
+    [mar-tripdata].ended_at,
+    [mar-tripdata].member_casual
+FROM [mar-tripdata]
+UNION ALL
+SELECT 
 	[apr-tripdata].ride_id,
 	[apr-tripdata].rideable_type,
 	[apr-tripdata].started_at,
 	[apr-tripdata].ended_at,
 	[apr-tripdata].member_casual
-from
-	[apr-tripdata]
-left join [dbo].[2021-tripdata] on [apr-tripdata].ride_id = [2021-tripdata].ride_id
-
-
-/*Adding the month of may*/
-select
+FROM [apr-tripdata]
+UNION ALL
+SELECT 
 	[may-tripdata].ride_id,
 	[may-tripdata].rideable_type,
 	[may-tripdata].started_at,
 	[may-tripdata].ended_at,
 	[may-tripdata].member_casual
-from
-	[may-tripdata]
-left join [dbo].[2021-tripdata] on [may-tripdata].ride_id = [2021-tripdata].ride_id
+FROM [may-tripdata]
+UNION ALL
+SELECT
+    [jun-tripdata].ride_id,
+    [jun-tripdata].rideable_type,
+    [jun-tripdata].started_at,
+    [jun-tripdata].ended_at,
+    [jun-tripdata].member_casual
+FROM [jun-tripdata]
+UNION ALL
+SELECT
+    [jul-tripdata].ride_id,
+    [jul-tripdata].rideable_type,
+    [jul-tripdata].started_at,
+    [jul-tripdata].ended_at,
+    [jul-tripdata].member_casual
+FROM [jul-tripdata]
 
 
-/*Adding the month of jun*/
-select
-	[jun-tripdata].ride_id,
-	[jun-tripdata].rideable_type,
-	[jun-tripdata].started_at,
-	[jun-tripdata].ended_at,
-	[jun-tripdata].member_casual
-from
-	[jun-tripdata]
-left join [dbo].[2021-tripdata] on [jun-tripdata].ride_id = [2021-tripdata].ride_id
+		/*Adding aug-dec months to the dataset*/
 
 
-/*Adding the month of july*/
-select
-	[jul-tripdata].ride_id,
-	[jul-tripdata].rideable_type,
-	[jul-tripdata].started_at,
-	[jul-tripdata].ended_at,
-	[jul-tripdata].member_casual
-from
-	[jul-tripdata]
-left join [dbo].[2021-tripdata] on [jul-tripdata].ride_id = [2021-tripdata].ride_id
+INSERT INTO [dbo].[2021-tripdata]
+           ([ride_id]
+           ,[rideable_type]
+           ,[started_at]
+           ,[ended_at]
+           ,[member_casual])
+SELECT
+    [aug-tripdata].ride_id,
+    [aug-tripdata].rideable_type,
+    [aug-tripdata].started_at,
+    [aug-tripdata].ended_at,
+    [aug-tripdata].member_casual
+FROM [aug-tripdata]
+UNION ALL
+SELECT
+    [sept-tripdata].ride_id,
+    [sept-tripdata].rideable_type,
+    [sept-tripdata].started_at,
+    [sept-tripdata].ended_at,
+    [sept-tripdata].member_casual
+FROM [sept-tripdata]
+UNION ALL
+SELECT
+    [oct-tripdata].ride_id,
+    [oct-tripdata].rideable_type,
+    [oct-tripdata].started_at,
+    [oct-tripdata].ended_at,
+    [oct-tripdata].member_casual
+FROM [oct-tripdata]
+UNION ALL
+SELECT
+    [nov-tripdata].ride_id,
+    [nov-tripdata].rideable_type,
+    [nov-tripdata].started_at,
+    [nov-tripdata].ended_at,
+    [nov-tripdata].member_casual
+FROM [nov-tripdata]
+UNION ALL
+SELECT
+    [dec-tripdata].ride_id,
+    [dec-tripdata].rideable_type,
+    [dec-tripdata].started_at,
+    [dec-tripdata].ended_at,
+    [dec-tripdata].member_casual
+FROM [dec-tripdata]
 
 
-/*Adding the month of aug*/
-select
-	[aug-tripdata].ride_id,
-	[aug-tripdata].rideable_type,
-	[aug-tripdata].started_at,
-	[aug-tripdata].ended_at,
-	[aug-tripdata].member_casual
-from
-	[aug-tripdata]
-left join [dbo].[2021-tripdata] on [aug-tripdata].ride_id = [2021-tripdata].ride_id
+		/* Checking if the data is inserted corrected*/
 
 
-/*Adding the month of september*/
-select
-	[sept-tripdata].ride_id,
-	[sept-tripdata].rideable_type,
-	[sept-tripdata].started_at,
-	[sept-tripdata].ended_at,
-	[sept-tripdata].member_casual
-from
-	[sept-tripdata]
-left join [dbo].[2021-tripdata] on [sept-tripdata].ride_id = [2021-tripdata].ride_id
+SELECT started_at, ride_id
+FROM [bike_share].[dbo].[2021-tripdata]
 
 
-/*Adding the month of october*/
-select
-	[oct-tripdata].ride_id,
-	[oct-tripdata].rideable_type,
-	[oct-tripdata].started_at,
-	[oct-tripdata].ended_at,
-	[oct-tripdata].member_casual
-from
-	[oct-tripdata]
-left join [dbo].[2021-tripdata] on [oct-tripdata].ride_id = [2021-tripdata].ride_id
+		/*Creating the Column for the ride_length and day_of_the_week*/
 
 
-/*Adding the month of november*/
-select
-	[nov-tripdata].ride_id,
-	[nov-tripdata].rideable_type,
-	[nov-tripdata].started_at,
-	[nov-tripdata].ended_at,
-	[nov-tripdata].member_casual
-from
-	[nov-tripdata]
-left join [dbo].[2021-tripdata] on [nov-tripdata].ride_id = [2021-tripdata].ride_id
+ALTER TABLE [dbo].[2021-tripdata]
+ADD ride_length AS DATEDIFF(minute, started_at, ended_at)
+
+SELECT TOP (50) started_at, ended_at, ride_length
+FROM [dbo].[2021-tripdata]
+
+UPDATE [2021-tripdata]	
+SET started_at = CONVERT(varchar, started_at, 120),
+	ended_at = CONVERT(varchar, ended_at, 120);
+
+ALTER TABLE [dbo].[2021-tripdata]
+ADD day_of_the_week varchar(20)
+
+UPDATE [dbo].[2021-tripdata]
+SET day_of_the_week = DATENAME(WEEKDAY, started_at);
 
 
-/*Adding the month of december*/
-select
-	[dec-tripdata].ride_id,
-	[dec-tripdata].rideable_type,
-	[dec-tripdata].started_at,
-	[dec-tripdata].ended_at,
-	[dec-tripdata].member_casual
-from
-	[dec-tripdata]
-left join [dbo].[2021-tripdata] on [dec-tripdata].ride_id = [2021-tripdata].ride_id
+		/*Calculating the average ride_lenght of each month*/
 
-
-/*checking if the data were added*/
-select started_at, ride_id
-from [bike_share].[dbo].[2021-tripdata]
-where started_at like '2021-02%'
-
-
-/*Creating the column for ride_lenght and day_of_the_week*/
-
-alter table [dbo].[2021-tripdata]
-add ride_length as datediff(minute, started_at, ended_at)
-
-select top (50) started_at, ended_at, ride_length
-from [dbo].[2021-tripdata]
-
-
-update [2021-tripdata]	
-set ride_start = convert(varchar, started_at, 120),
-	ride_end = convert(varchar, ended_at, 120);
-
-alter table [dbo].[2021-tripdata]
-add day_of_the_week varchar(20)
-
-update [dbo].[2021-tripdata]
-set day_of_the_week = datename(WEEKDAY, started_at);
-
-
-/*Calculating the average ride_lenght of each month*/
-
-select 
-  format(started_at, 'yyyy-MM') as month,
-  avg (ride_length) as average_ride_length
-from 
+SELECT 
+  FORMAT(started_at, 'yyyy-MM') AS month,
+  AVG (ride_length) AS average_ride_length
+FROM 
   [dbo].[2021-tripdata]
-group by
-  format(started_at, 'yyyy-MM')
-order by 
-  format(started_at, 'yyyy-MM')
+GROUP BY
+  FORMAT(started_at, 'yyyy-MM')
+ORDER BY 
+  FORMAT(started_at, 'yyyy-MM')
 
-select 
-  format(started_at, 'yyyy-MM') as month,
-  count (member_casual) as average_membership
-from 
+
+		/*Average membership per month*/
+
+
+SELECT
+  FORMAT(started_at, 'yyyy-MM') AS month,
+  SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) AS average_membership,
+  SUM(CASE WHEN member_casual = 'casual' THEN 1 ELSE 0 END) AS average_casual_trips
+FROM 
   [dbo].[2021-tripdata]
-group by 
-	started_at
+GROUP BY
+	FORMAT(started_at, 'yyyy-MM')
+ORDER BY
+	FORMAT(started_at, 'yyyy-MM')
+
+
+	/*Sum of day of the week per year*/
+
+
+SELECT
+	FORMAT(started_at, 'yyyy') AS year,
+	SUM(CASE WHEN day_of_the_week = 'Sunday' THEN 1 ELSE 0 END) AS Sunday,
+	SUM(CASE WHEN day_of_the_week = 'Monday' THEN 1 ELSE 0 END) AS Monday,
+	SUM(CASE WHEN day_of_the_week = 'Tuesday' THEN 1 ELSE 0 END) AS Tuesday,
+	SUM(CASE WHEN day_of_the_week = 'Wednesday' THEN 1 ELSE 0 END) AS Wednesday,
+	SUM(CASE WHEN day_of_the_week = 'Thursday' THEN 1 ELSE 0 END) AS Thursday,
+	SUM(CASE WHEN day_of_the_week = 'Friday' THEN 1 ELSE 0 END) AS Friday,
+	SUM(CASE WHEN day_of_the_week = 'Saturday' THEN 1 ELSE 0 END) AS Saturday
+FROM 
+	[dbo].[2021-tripdata]
+GROUP BY 
+	FORMAT(started_at, 'yyyy')
+ORDER BY 
+	FORMAT(started_at, 'yyyy') 
+
+
+	/*Total rideable_type per month*/ 
+
+SELECT
+	FORMAT(started_at, 'yyyy-MM') AS month,
+	SUM(CASE WHEN rideable_type = 'classic_bike' THEN 1 ELSE 0 END) AS classic,
+	SUM(CASE WHEN rideable_type = 'electric_bike' THEN 1 ELSE 0 END) AS electric
+FROM
+	[dbo].[2021-tripdata]
+GROUP BY 
+	FORMAT(started_at, 'yyyy-MM')
+ORDER BY 
+	FORMAT(started_at, 'yyyy-MM')
